@@ -40,6 +40,7 @@ class PCA9685 {
 	private: 
       int file;
     	int adapter_nr = 1;
+    	int addr = 0x40;
     	char filename[20];
     	
     	void getFile();
@@ -51,6 +52,10 @@ class PCA9685 {
 PCA9685::PCA9685(void) {
     getFile();
     checkFile();
+    if (ioctl(file, I2C_SLAVE, addr) < 0) {
+        cout << "Ioctl Failed." << endl;
+        exit(EXIT_FAILURE);
+    }
     write(__MODE1, 0x00);
 }
 

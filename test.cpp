@@ -19,9 +19,10 @@ int main(int argc, char ** argv)
     char filename[20];
     snprintf(filename, 19, "/dev/i2c-%d", adapter_nr);
     file = open(filename, O_RDWR);
-    if (file < 0) {
-        return(1);
-    }
+    
+//    if (file < 0) {
+//        return(1);
+//    }
 
     int addr = 0x40;
     if (ioctl(file, I2C_SLAVE, addr) < 0) {
