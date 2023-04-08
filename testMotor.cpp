@@ -14,18 +14,12 @@ bool stop_signal = false;
 
 int main() {
 
-    PCA9685 tttt;
-    int a;
-    a = tttt.read(0x05);
-    cout << "res is:" << a << "\n";
-
-
-//	signal(SIGINT, catchSIGINT);
-//	loop();
+	signal(SIGINT, catchSIGINT);
+	loop();
 	
-//	if (stop_signal) {
-//		destroy();
-//	}
+	if (stop_signal) {
+		destroy();
+	}
 	
 	  return 0;
 }

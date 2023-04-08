@@ -1,5 +1,7 @@
-#include <cstdio>
-#include <iostream>
+# include <iostream>
+# include <signal.h>
+# include <unistd.h>
+# include "Motor.h"
 using namespace std;
 
 extern "C" {
