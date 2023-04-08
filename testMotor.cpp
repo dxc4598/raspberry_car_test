@@ -8,7 +8,7 @@ void loop();
 void destroy();
 void catchSIGINT(int);
 
-// Motor pwm;
+Motor pwm;
 bool stop_signal = false;
 
 
