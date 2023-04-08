@@ -124,3 +124,15 @@ void PCA9685::setServoPulse(int channel, int pulse) {
 	setPWM(channel, 0, newPulse);
 }
 
+
+int main()
+{
+    PCA9685 pwm;
+    int a;
+    a = pwm.read(0x05);
+    cout << "res is:" << a << "\n";
+    
+    return 0;
+
+
+}
