@@ -30,15 +30,15 @@ void loop() {
 	cout << "Moving Forward." << endl;
 	sleep(1);
 	
-	pwm.setMotorModel(-2000, -2000, -2000, -2000);     /* Move Back. */
+	pwm.setMotorModel(-1000, -1000, -1000, -1000);     /* Move Back. */
 	cout << "Moving Back." << endl;
 	sleep(1);
 	
-	pwm.setMotorModel(-500, -500, 2000, 2000);         /* Turn Left. */
+	pwm.setMotorModel(-1500, -1500, 2000, 2000);         /* Turn Left. */
 	cout << "Turning Left." << endl;
 	sleep(1);
 	
-	pwm.setMotorModel(2000, 2000, -500, -500);         /* Turn Right. */
+	pwm.setMotorModel(2000, 2000, -1500, -1500);         /* Turn Right. */
 	cout << "Turning Right." << endl;
 	sleep(1);
 	
