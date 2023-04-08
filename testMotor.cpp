@@ -13,14 +13,21 @@ bool stop_signal = false;
 
 
 int main() {
-	signal(SIGINT, catchSIGINT);
-	loop();
+
+    PCA9685 pwm;
+    int a;
+    a = pwm.read(0x05);
+    cout << "res is:" << a << "\n";
+
+
+//	signal(SIGINT, catchSIGINT);
+//	loop();
 	
-	if (stop_signal) {
-		destroy();
-	}
+//	if (stop_signal) {
+//		destroy();
+//	}
 	
-	return 0;
+	  return 0;
 }
 
 
