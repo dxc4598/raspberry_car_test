@@ -8,15 +8,15 @@ void loop();
 void destroy();
 void catchSIGINT(int);
 
-Motor pwm;
+// Motor pwm;
 bool stop_signal = false;
 
 
 int main() {
 
-    PCA9685 pwm;
+    PCA9685 tttt;
     int a;
-    a = pwm.read(0x05);
+    a = tttt.read(0x05);
     cout << "res is:" << a << "\n";
 
 
