@@ -6,10 +6,10 @@ using namespace std;
 class Motor {
 	public: 
 		void setMotorModel(int, int, int, int);
+		Motor();
 		
 	private: 
 		PCA9685 pwm;
-		Motor(): pwm.setPWMFreq(50) {}
 		
 		void setDutyRange(int, int, int, int);
 		void setLeftUpperWheel(int);
@@ -19,7 +19,12 @@ class Motor {
 };
 
 
-void Motor::setDutyRange(int &duty1, int &duty2, int &duty3, int &duty4) {
+Motor::Motor(void) {
+    pwm.setPWMFreq(50);
+}
+
+
+void Motor::setDutyRange(int duty1, int duty2, int duty3, int duty4) {
 	if (duty1 > 4095) {
 		duty1 = 4095;
 	} 

@@ -35,25 +35,28 @@ class PCA9685 {
 		void setPWM(int, int, int);
 		void setMotorPWM(int, int);
 		void setServoPulse(int, int);
+		PCA9685();
 		
 	private: 
-		int file;
+      int file;
     	int adapter_nr = 1;
     	char filename[20];
     	
     	void getFile();
     	void checkFile();
-    	
-    	PCA9685(): file(getFile()) {}
+
 };
 
 
-void PCA9685::getFile() {
-	snprintf(filename, 19, "/dev/i2c-%d", adapter_nr);
-    file = open(filename, O_RDWR);
-    
+PCA9685::PCA9685(void) {
+    getFile();
     checkFile();
     write(__MODE1, 0x00);
+}
+
+void PCA9685::getFile() {
+	  snprintf(filename, 19, "/dev/i2c-%d", adapter_nr);
+    file = open(filename, O_RDWR);
 }
 
 
