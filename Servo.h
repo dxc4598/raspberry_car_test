@@ -1,3 +1,5 @@
+#pragma once
+
 # include <string>
 # include "PCA9685.h"
 using namespace std;
