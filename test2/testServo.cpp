@@ -30,19 +30,19 @@ int main() {
 
 
 void test() {
-	for (int i = 50, i < 110, i++) {
+	for (int i = 50; i < 110; i++) {
 		pwm.setServoPWM("0", i);
 		usleep(10000);
 	}
-	for (int i = 110, i < 50, i--) {
+	for (int i = 110; i < 50; i--) {
 		pwm.setServoPWM("0", i);
 		usleep(10000);
 	}
-	for (int i = 80, i < 150, i++) {
+	for (int i = 80; i < 150; i++) {
 		pwm.setServoPWM("1", i);
 		usleep(10000);
 	}
-	for (int i = 150, i < 80, i--) {
+	for (int i = 150; i < 80; i--) {
 		pwm.setServoPWM("1", i);
 		usleep(10000);
 	}

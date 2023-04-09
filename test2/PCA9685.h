@@ -29,14 +29,13 @@ using namespace std;
 
 class PCA9685 {
 	public: 
-		PCA9685();
-		
 		int read(int);
 		void write(int, int);
 		void setPWMFreq(int);
 		void setPWM(int, int, int);
 		void setMotorPWM(int, int);
 		void setServoPulse(int, int);
+		PCA9685();
 		
 	private: 
       	int file;

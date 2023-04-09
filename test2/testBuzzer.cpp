@@ -29,7 +29,7 @@ void test() {
 	cout << "Buzzer.h Start Testing." << endl;
 	
 	buzzer.makeSound("1");
-	for (int i = 0, i < 3, i++) {
+	for (int i = 0; i < 3; i++) {
 		sleep(1);
 		cout << i+1 << "second(s) passed." << endl;
 	}
