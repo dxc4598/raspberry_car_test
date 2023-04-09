@@ -67,7 +67,7 @@ int Ultrasonic::getDistance() {
 		usleep(10);
 		digitalWrite(Trigger_Pin, LOW);
 		
-		pulse_time = pulseIn(Echo_Pin, HIGH, MAX_TIMEOUT);
+		int pulse_time = pulseIn(Echo_Pin, HIGH, MAX_TIMEOUT);
 		distance[i] = pulse_time * 340.0 / 2.0 / 10000.0;
 	}
 	
