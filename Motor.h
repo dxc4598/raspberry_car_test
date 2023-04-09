@@ -4,9 +4,10 @@ using namespace std;
 
 
 class Motor {
-	public: 
+	public:
+    Motor();
 		void setMotorModel(int, int, int, int);
-		Motor();
+		
 		
 	private: 
 		PCA9685 pwm;
