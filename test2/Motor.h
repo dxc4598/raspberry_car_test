@@ -5,8 +5,8 @@ using namespace std;
 
 class Motor {
 	public: 
-		void setMotorModel(int, int, int, int);
 		Motor();
+		void setMotorModel(int, int, int, int);
 		
 	private: 
 		PCA9685 pwm;
