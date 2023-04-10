@@ -6,7 +6,7 @@
 # include "Ultrasonic.h"
 using namespace std;
 
-void test();
+void testGetDistance();
 void stopTesting();
 void catchSIGINT(int);
 
@@ -18,19 +18,25 @@ bool stop = false;
 
 int main() {
 	signal(SIGINT, catchSIGINT);
-	test();
+	
+	while (true) {
+		testGetDistance();
 		
-	if (stop) {
-		stopTesting();
-		exit(EXIT_SUCCESS);
+		if (stop) {
+			stopTesting();
+			exit(EXIT_SUCCESS);
+		}
 	}
 	
 	return 0;
 }
 
 
-void test() {
-	ultrasonic.run();
+void testGetDistance() {
+	int data;
+	data = ultrasonic.getDistance();
+	cout << "Obstacle Distance is " << data << " cm" << endl;
+	sleep(1);
 }
 
 
