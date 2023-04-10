@@ -1,4 +1,4 @@
-#pragma once
+# pragma once
 
 # include <cmath>
 # include <cstdio>
@@ -31,7 +31,7 @@ using namespace std;
 
 class PCA9685 {
 	public:
-    PCA9685();
+    	PCA9685();
     
 		int read(int);
 		void write(int, int);

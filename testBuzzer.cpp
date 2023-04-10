@@ -34,7 +34,7 @@ void test() {
 		cout << i+1 << "second(s) passed." << endl;
 	}
 	
-	cout << "Servo.h Stop Testing." << endl;
+	stopTesting();
 }
 
 

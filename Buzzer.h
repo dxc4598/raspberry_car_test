@@ -30,3 +30,4 @@ void Buzzer::makeSound(string command) {
 		cout << "Invalid Command." << endl;
 	}
 }
+

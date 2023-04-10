@@ -1,4 +1,4 @@
-#pragma once
+# pragma once
 
 # include <cstdlib>
 # include "PCA9685.h"
@@ -7,7 +7,7 @@ using namespace std;
 
 class Motor {
 	public:
-    Motor();
+    	Motor();
 		void setMotorModel(int, int, int, int);
 		
 		

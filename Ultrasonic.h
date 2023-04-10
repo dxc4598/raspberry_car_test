@@ -1,4 +1,5 @@
 # include <iostream>
+# include <algorithm>
 # include <unistd.h>
 # include <wiringPi.h>
 # include <sys/time.h>
@@ -15,6 +16,7 @@ using namespace std;
 class Ultrasonic {
 	public: 
 		Ultrasonic();
+		
 		int getDistance();
 		void run();
 	
@@ -23,7 +25,6 @@ class Ultrasonic {
 		Servo pwmServo;
 	
 		int pulseIn(int, int, int);
-		
 		void runMotor(int, int, int);
 };
 
@@ -38,18 +39,14 @@ Ultrasonic::Ultrasonic(void) {
 int Ultrasonic::pulseIn(int pin, int level, int timeout) {
 	int pulse_time = 0;
 	double t0, t1;
-	
 	struct timeval tv0, tv1;
+	
 	gettimeofday(&tv0, NULL);
 	t0 = tv0.tv_sec + tv0.tv_usec * 0.000001;
-	cout << "(t0)s: " << tv0.tv_sec << endl;
-	cout << "(t0)us: " << tv0.tv_usec << endl;
-	
 	while (digitalRead(pin) != level) {
 		gettimeofday(&tv1, NULL);
 		t1 = tv1.tv_sec + tv1.tv_usec * 0.000001;
-		cout << "(t11)s: " << tv1.tv_sec << endl;
-		cout << "(t11)us: " << tv1.tv_usec << endl;
+		
 		if ((t1 - t0) > MAX_TIMEOUT * 0.000001) {
 			return 0;
 		}
@@ -60,8 +57,7 @@ int Ultrasonic::pulseIn(int pin, int level, int timeout) {
 	while (digitalRead(pin) == level) {
 		gettimeofday(&tv1, NULL);
 		t1 = tv1.tv_sec + tv1.tv_usec * 0.000001;
-		cout << "(t12)s: " << tv1.tv_sec << endl;
-		cout << "(t12)us: " << tv1.tv_usec << endl;
+
 		if ((t1 - t0) > MAX_TIMEOUT * 0.000001) {
 			return 0;
 		}
@@ -70,7 +66,7 @@ int Ultrasonic::pulseIn(int pin, int level, int timeout) {
 	gettimeofday(&tv1, NULL);
 	t1 = tv1.tv_sec + tv1.tv_usec * 0.000001;
 	pulse_time = (t1 - t0) * 1000000;
-	cout << "pt: " << pulse_time << endl;
+
 	return pulse_time;
 }
 
@@ -87,15 +83,7 @@ int Ultrasonic::getDistance() {
 		distance[i] = pulse_time * 340.0 / 2.0 / 10000.0;
 	}
 	
-	for (int i=0; i<5; i++) {
-		for (int j=i+1; j<5; j++) {
-			if (distance[j]<distance[i]) {
-				double t = distance[j];
-				distance[j] = distance[i];
-				distance[i] = t;
-			}
-		}
-	} 
+	sort(distance, distance + 5);
 	return (int) distance[2];
 }
 
@@ -139,7 +127,7 @@ void Ultrasonic::runMotor(int L, int M, int R) {
 
 
 void Ultrasonic::run() {
-	int L, M, R, data;
+	int L, M, R;
 	
 	for (int i = 30; i < 151; i += 60) {
 		pwmServo.setServoPWM("0", i);
@@ -192,10 +180,6 @@ void Ultrasonic::run() {
 		
 			runMotor(L, M, R);
 		}
-		
-		data = getDistance();
-		cout << "Obstacle Distance is " << data << " cm" << endl;
-		sleep(1);
 	}
 }
 

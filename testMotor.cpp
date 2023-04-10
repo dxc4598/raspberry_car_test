@@ -44,8 +44,7 @@ void test() {
 	cout << "Turning Right." << endl;
 	sleep(1);
 	
-	pwm.setMotorModel(0, 0, 0, 0);
-	cout << "Motor.h Stop Testing." << endl;           /* Stop */
+	stopTesting();
 }
 
 
