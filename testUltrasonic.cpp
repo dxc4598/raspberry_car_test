@@ -21,25 +21,25 @@ int main() {
 	int number = 0;
 	
 	signal(SIGINT, catchSIGINT);
-	cout << "Please select the test." << endl;;
+/*	cout << "Please select the test." << endl;;
 	number = cin >> "1 for testGetDistance() and 2 for testRun().";
 	
-	if (number == 1) {
-		while (true) {
-			testGetDistance();
+	while (true) {
+		testGetDistance();
 		
-			if (stop) {
-				stopTesting();
-				break;
-			}
+		if (stop) {
+			stopTesting();
+			break;
 		}
 	}
-	else if (number == 2) {
+*/
+	ultrasonic.setRun();
+	while (true) {
 		testRun();
 		
 		if (stop) {
 			stopTesting();
-			exit(EXIT_SUCCESS);
+			break;
 		}
 	}
 	
