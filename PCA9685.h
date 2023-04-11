@@ -40,7 +40,6 @@ class PCA9685 {
 		void setMotorPWM(int, int);
 		void setServoPulse(int, int);
 		
-		
 	private: 
       	int file;
     	int adapter_nr = 1;

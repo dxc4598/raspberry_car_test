@@ -33,7 +33,7 @@ int main() {
 		}
 	}
 */
-	ultrasonic.setRun();
+	ultrasonic.setUp();
 	while (true) {
 		testRun();
 		

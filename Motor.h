@@ -10,7 +10,6 @@ class Motor {
     	Motor();
 		void setMotorModel(int, int, int, int);
 		
-		
 	private: 
 		PCA9685 pwm;
 		
