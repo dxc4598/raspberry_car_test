@@ -3,7 +3,6 @@
 # include <iostream>
 # include <unistd.h>
 # include "AutoRun.h"
-# include <signal.h>
 using namespace std;
 
 void test();
@@ -13,44 +12,43 @@ void catchSIGINT(int);
 AutoRun autoRun;
 bool stop = false;
 
-
 int main() {
-	ifstream f ("direction.txt");
-	string s;
+	string instruction;
+	ifstream file ("direction.txt");
+	autoRun.setUp();
 	
-	if (f.is_open()) {
-		autoRun.setUp();
-		
-		while (!f.eof()) {
-			f >> s;
+	if (file.is_open()) {
+		while (!file.eof()) {
+			file >> instruction;
 			
-			if (s == "stop") {
+			if (instruction == "stop") {
 				autoRun.stop();
+				break;
 			}
-			else if (s == "go-straight") {
-				f >> s;
+			else if (instruction == "go-straight") {
+				file >> instruction;
 				
-				int sleep_time = (int) stoi(s) * 1612903;
+				int sleep_time = (int) stoi(instruction) * 1612903;
 				autoRun.goStraight(sleep_time);
 				
 			}
-			else if (s == "turn-left") {
-				f >> s;
+			else if (instruction == "turn-left") {
+				file >> instruction;
 
-				int sleep_time = (int) stoi(s) * 1612903;
+				int sleep_time = (int) stoi(instruction) * 1612903;
 				autoRun.turnLeft();
 				autoRun.goStraight(sleep_time);
 			}
-			else if (s == "turn-right") {
-				f >> s;
+			else if (instruction == "turn-right") {
+				file >> instruction;
 				
-				int sleep_time = (int) stoi(s) * 1612903;
+				int sleep_time = (int) stoi(instruction) * 1612903;
 				autoRun.turnRight();
 				autoRun.goStraight(sleep_time);
 			}
 			else if (stop) {
 				stopTesting();
-				exit(EXIT_SUCCESS);
+				break;
 			}
  		}
 	}
