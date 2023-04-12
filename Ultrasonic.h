@@ -20,7 +20,7 @@ class Ultrasonic {
 		Ultrasonic();
 		
 		int getDistance();
-		void setRun();
+		void setUp();
 		void run();
 	
 	private: 

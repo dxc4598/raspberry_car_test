@@ -3,6 +3,7 @@
 # include <iostream>
 # include <unistd.h>
 # include "AutoRun.h"
+# include <signal.h>
 using namespace std;
 
 void test();
@@ -18,10 +19,11 @@ int main() {
 	string s;
 	
 	if (f.is_open()) {
+		autoRun.setUp();
+		
 		while (!f.eof()) {
 			f >> s;
 			
-			autoRun.setUp();
 			if (s == "stop") {
 				autoRun.stop();
 			}
