@@ -9,8 +9,8 @@ using namespace std;
 
 # define Servo_Min       0
 # define Servo_Max      90
-# define Min_Distance   25
-# define Max_Distance   35
+# define Min_Distance   20
+# define Max_Distance   50
 
 
 class AutoRun {
