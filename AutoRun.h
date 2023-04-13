@@ -4,6 +4,7 @@
 # include "Servo.h"
 # include "Buzzer.h"
 # include "Ultrasonic.h"
+# include <signal.h>
 using namespace std;
 
 # define Servo_Min       0
@@ -14,7 +15,7 @@ using namespace std;
 
 class AutoRun {
 	public: 
-		void stop()
+		void stop();
 		void goStraight(int);
 		void turnLeft();
 		void turnRight();
@@ -63,7 +64,7 @@ void AutoRun::goStraight(int utime) {
 		
 		gettimeofday(&tv1, NULL);
 		t1 = tv1.tv_sec + tv1.tv_usec * 0.000001;
-		if ((t1 - t0) > (utime * 0.000001 + stop * 1000000)) {
+		if ((t1 - t0) > (utime * 0.000001 + stopCount * 1000000)) {
 			stop();
 			break;
 		}
@@ -87,12 +88,12 @@ void AutoRun::turnRight() {
 
 
 void AutoRun::runServo() {
-	pwm.setServoPWM("0", Servo_Min);
+	pwmServo.setServoPWM("0", Servo_Min);
 	L = ultrasonic.getDistance();
 	cout << "Left: " << L << " cm" << endl; 
 	usleep(10000);
 	
-	pwm.setServoPWM("0", Servo_Max);
+	pwmServo.setServoPWM("0", Servo_Max);
 	M = ultrasonic.getDistance();
 	cout << "Middle: " << L << " cm" << endl; 
 	usleep(10000);
@@ -101,7 +102,7 @@ void AutoRun::runServo() {
 
 void AutoRun::makeNoise(int utime) {
 	buzzer.makeSound("1");
-	usleep(noise_time);
+	usleep(utime);
 	buzzer.makeSound("0");
 }
 
