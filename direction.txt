@@ -1,5 +1,5 @@
 go-straight
 2
-turn-left
+go-straight
 1
 stop

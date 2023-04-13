@@ -121,7 +121,6 @@ void AutoRun::setUp() {
 	
 	cout << "Smart Car has Set Up." << endl;
 	cout << "-------------------------------" << endl;
-	checkDistance();
 	//makeNoise(500000);
 }
 
