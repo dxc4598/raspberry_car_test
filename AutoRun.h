@@ -9,8 +9,8 @@ using namespace std;
 
 # define Servo_Min       0
 # define Servo_Max      90
-# define Min_Distance   50
-# define Max_Distance  200
+# define Min_Distance   25
+# define Max_Distance   35
 
 
 class AutoRun {
@@ -84,12 +84,12 @@ void AutoRun::runServo() {
 	pwmServo.setServoPWM("0", Servo_Min);
 	L = ultrasonic.getDistance();
 	cout << "Left: " << L << " cm" << endl; 
-	usleep(10000);
+	usleep(200000);
 	
 	pwmServo.setServoPWM("0", Servo_Max);
 	M = ultrasonic.getDistance();
 	cout << "Middle: " << L << " cm" << endl; 
-	usleep(10000);
+	usleep(200000);
 }
 
 
@@ -122,7 +122,7 @@ void AutoRun::setUp() {
 	cout << "Smart Car has Set Up." << endl;
 	cout << "-------------------------------" << endl;
 	checkDistance();
-	makeNoise(500000);
+	//makeNoise(500000);
 }
 
 
