@@ -1,5 +1,0 @@
-go-straight
-57
-turn-left
-62
-stop

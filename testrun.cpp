@@ -31,13 +31,22 @@ void test() {
   sleep(1);
 
   pwm.setMotorModel(2000, 2000, -500, -500);
-  usleep(200000);
+  usleep(700000);
   pwm.setMotorModel(-500, -500, 2000, 2000);
-  usleep(200000);
+  usleep(700000);
   
   pwm.setMotorModel(0, 0, 0, 0);
+  sleep(2);
   
-	stopTesting();
+  pwm.setMotorModel(600, 600, 600, 600); 
+  sleep(1);
+
+  pwm.setMotorModel(-500, -500, 2000, 2000);
+  sleep(700000);
+  pwm.setMotorModel(2000, 2000, -500, -500);
+  sleep(700000);
+  
+  stopTesting();
 }
 
 

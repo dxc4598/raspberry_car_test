@@ -1,16 +1,16 @@
 # include <iostream>
+# include <signal.h>
 # include <unistd.h>
 # include "Motor.h"
 # include "Servo.h"
 # include "Buzzer.h"
 # include "Ultrasonic.h"
-# include <signal.h>
 using namespace std;
 
-# define Servo_Min       0
+# define Servo_Min      10
 # define Servo_Max      90
 # define Min_Distance   20
-# define Max_Distance   50
+# define Max_Distance   60
 
 
 class AutoRun {
@@ -51,6 +51,7 @@ void AutoRun::goStraight(int utime) {
 	stopCount = 0;
 	gettimeofday(&tv0, NULL);
 	t0 = tv0.tv_sec + tv0.tv_usec * 0.000001;
+	
 	while (true) {
 		runServo();
 		checkDistance();
@@ -81,7 +82,7 @@ void AutoRun::turnRight() {
 
 
 void AutoRun::runServo() {
-	pwmServo.setServoPWM("0", Servo_Min);
+/*	pwmServo.setServoPWM("0", Servo_Min);
 	L = ultrasonic.getDistance();
 	cout << "Left: " << L << " cm" << endl; 
 	usleep(200000);
@@ -90,6 +91,20 @@ void AutoRun::runServo() {
 	M = ultrasonic.getDistance();
 	cout << "Middle: " << M << " cm" << endl; 
 	usleep(200000);
+	*/
+	for (int i = 0; i < 91; i += 90) {
+		pwmServo.setServoPWM("0", i);
+		usleep(200000);
+		
+		if (i == 0) {
+			L = ultrasonic.getDistance();
+			cout << "Left: " << L << " cm" << endl; 
+		}
+		else if (i == 90) {
+			M = ultrasonic.getDistance();
+			cout << "Middle: " << M << " cm" << endl; 
+		}
+	}
 }
 
 
@@ -133,22 +148,22 @@ void AutoRun::checkDistance() {
 	else if (L < Min_Distance) {
     cout << "L is too close." << endl;
 		pwm.setMotorModel(2000, 2000, -500, -500);
-		usleep(200000);
+		usleep(700000);
 		pwm.setMotorModel(-500, -500, 2000, 2000);
-		usleep(200000);
-		sleep(1);
-		stopCount += 0.2;
+		usleep(700000);
+		pwm.setMotorModel(0, 0, 0, 0);
+		stopCount += 0.5;
 	}
 	else if (L > Max_Distance) {
     cout << "L is too far." << endl;
 		pwm.setMotorModel(-500, -500, 2000, 2000);
-		usleep(200000);
+		usleep(700000);
 		pwm.setMotorModel(2000, 2000, -500, -500);
-		usleep(200000);
-		stopCount += 0.2;
+		usleep(700000);
+		pwm.setMotorModel(0, 0, 0, 0);
+		stopCount += 0.5;
 	}
 	else {
 		pwm.setMotorModel(600, 600, 600, 600);
 	}
 }
-

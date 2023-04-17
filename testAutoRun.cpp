@@ -1,5 +1,6 @@
 # include <string>
 # include <fstream>
+# include <signal.h>
 # include <iostream>
 # include <unistd.h>
 # include "AutoRun.h"
@@ -15,6 +16,7 @@ bool stop = false;
 int main() {
 	string instruction;
 	ifstream file ("direction.txt");
+	signal(SIGINT, catchSIGINT);
 	autoRun.setUp();
 	
 	if (file.is_open()) {
@@ -66,7 +68,8 @@ void stopTesting() {
 void catchSIGINT(int signal) {
 	if (signal == SIGINT) {
 		cout << "Ctrl + c has been pressed." << endl;
-		stop = true;
+		autoRun.stop();
+		exit(0);
 	}
 }
 
